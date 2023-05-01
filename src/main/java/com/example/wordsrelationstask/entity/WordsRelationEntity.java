@@ -1,6 +1,5 @@
 package com.example.wordsrelationstask.entity;
 
-import com.example.wordsrelationstask.model.RelationsEnum;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,5 +17,5 @@ public class WordsRelationEntity {
     private Long id;
     private String firstWord;
     private String secondWord;
-    private RelationsEnum relation;
+    private String relation;
 }

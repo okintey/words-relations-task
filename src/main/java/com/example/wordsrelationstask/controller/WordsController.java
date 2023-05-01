@@ -1,14 +1,15 @@
 package com.example.wordsrelationstask.controller;
 
+import com.example.wordsrelationstask.model.RelationsEnum;
 import com.example.wordsrelationstask.model.WordsRelation;
+import com.example.wordsrelationstask.model.WordsRelationWithInverse;
 import com.example.wordsrelationstask.service.WordsRelationService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(path = "/words-relations")
@@ -21,5 +22,12 @@ public class WordsController {
     public ResponseEntity<WordsRelation> create(@RequestBody @Valid WordsRelation wordsRelation) {
         return ResponseEntity.ok()
                 .body(service.createNewRelation(wordsRelation));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<WordsRelationWithInverse>> getAll(@RequestParam(required = false) RelationsEnum relation,
+                                                                 @RequestParam(defaultValue = "false") boolean showInverse) {
+        return ResponseEntity.ok()
+                .body(service.getAllRelations(relation, showInverse));
     }
 }
